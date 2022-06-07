@@ -1,0 +1,10 @@
+(define (sort values)
+  (if (empty? values)
+    '()
+    (insert (first values)
+            (sort (bf values)))))
+
+(define (insert number values)
+  (cond ((empty? values) (se number))
+        ((< number (first values)) (se number values))
+        (else (se (first values) (insert number (bf values))))))
