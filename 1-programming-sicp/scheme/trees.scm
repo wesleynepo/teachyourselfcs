@@ -19,3 +19,25 @@
   (make-tree (fn (datum tree))
              (map (lambda (child) (treemap fn child))
                   (children tree) )))
+
+(define (deep-map fn lol)
+  (if (list? lol)
+      (map (lambda (element) (deep-map fn element))
+           lol)
+      (fn lol)))
+
+(define lol '((john l) (paul m) (george h) (ringo s)))
+
+(define (depth-first-search tree)
+  (print (datum tree))
+  (for-each depth-first-search (children tree)))
+
+(define (breath-first tree)
+  (bfs-iter (list tree)))
+
+(define (bfs-iter queue)
+  (if (null? queue)
+    'done
+    (let ((task (car queue)))
+        (print (datum task))
+        (bfs-iter (append (cdr queue) (children task))))))
